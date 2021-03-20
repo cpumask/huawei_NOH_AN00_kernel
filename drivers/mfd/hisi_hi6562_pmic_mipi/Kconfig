@@ -1,0 +1,5 @@
+config HISI_HI6562_PMIC_MIPI
+		tristate "HiSilicon platform hi6562 pmic mipi"
+		depends on OF
+        help
+          This driver supports HiSilicon platform hi6562 power to control TOF cameras.

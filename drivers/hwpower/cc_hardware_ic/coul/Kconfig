@@ -1,0 +1,27 @@
+#
+# huawei coul drivers
+#
+
+config HUAWEI_COUL
+	bool "huawei coul"
+	default n
+	help
+	  Say Y here to enable huawei coul driver.
+	  This driver provides a unified interface to the coul.
+	  Currently supported coul as below.
+	  bq27z561
+	  rt9426 & rt9426a
+
+config HUAWEI_COUL_BQ27Z56X
+	bool "coul with bq27z561"
+	depends on HUAWEI_COUL
+	default n
+	help
+	  Say Y here to enable bq27z561 coul driver.
+
+config HUAWEI_COUL_RT9426X
+	bool "coul with rt9426 & rt9426a"
+	depends on HUAWEI_COUL
+	default n
+	help
+	  Say Y here to enable rt9426 & rt9426a coul driver.

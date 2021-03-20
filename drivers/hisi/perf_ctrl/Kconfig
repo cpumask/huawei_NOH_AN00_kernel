@@ -1,0 +1,26 @@
+menu "Hisilicon Performace Control"
+
+config HISI_PERF_CTRL
+        tristate "Hisilicon Performance Control Drivers"
+	default n
+        help
+	  Hisilicon Performance Control Drivers
+
+config HISI_RENDER_RT
+        bool "render realted thread"
+	depends on HISI_PERF_CTRL
+	depends on SCHED_WALT
+	depends on HISI_TASK_RAVG_SUM
+	default n
+        help
+	  Hisilicon Render Related Thread
+
+config HISI_RENDER_RT_DEBUG
+        bool "render realted thread test"
+	depends on HISI_RENDER_RT
+	depends on HISI_DEBUG_FS
+	default n
+        help
+	  Hisilicon Render Related Thread debug trace
+
+endmenu

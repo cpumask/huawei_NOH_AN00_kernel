@@ -1,0 +1,1 @@
+source "drivers/hwpower/cc_adapter/adapter_protocol/Kconfig"

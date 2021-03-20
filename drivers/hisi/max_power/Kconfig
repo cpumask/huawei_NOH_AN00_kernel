@@ -1,0 +1,11 @@
+menu "Hisi max power options"
+
+config HISI_MAX_POWER
+	bool "Hisilicon max power"
+	default n
+	help
+	  Hisilicon max power drivers
+	  eng version need this config
+	  begin from eromitlab plat
+
+endmenu

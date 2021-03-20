@@ -1,0 +1,9 @@
+config HISI_PERFHUB
+	bool "hisi perfhub"
+	default n
+
+config HISI_FREQ_LIMIT_COUNTER
+	bool "counts cpu/gpu freq limit"
+	default n
+	depends on HISI_IPA_THERMAL
+	depends on HISI_EAS_SCHED

@@ -1,0 +1,5 @@
+config HISI_LPMCU_DDR_VOTE
+	bool "count lpmcu or ddr vote time"
+	default n
+	help
+	Driver for lpmcu vote time

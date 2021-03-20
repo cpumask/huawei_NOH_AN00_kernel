@@ -1,0 +1,10 @@
+#
+# Huawei swapfile driver configuration
+#
+
+config HUAWEI_SWAPFILE
+	bool "huawei swapfile driver"
+	depends on HIBERNATION
+	default n
+	help
+	  swapfile driver supports swapfile's dynamic mount and umount for hibernate.

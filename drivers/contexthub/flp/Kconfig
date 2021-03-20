@@ -1,0 +1,70 @@
+#
+# FLP driver configuration
+#
+
+menu "HISI FLP configuration"
+
+config HISI_SOFTTIMER
+	bool "HISI SOFTTIMER support"
+	depends on CONTEXTHUB
+	default n
+	---help---
+	  Enable support for softtimer driver
+
+config HISI_FLP
+	bool "HISI FLP support"
+	depends on HISI_SOFTTIMER
+	default n
+	---help---
+	  Enable support for FLP driver
+
+config HISI_FLP_GEOFENCE
+	bool "HISI FLP GEOFENCE support"
+	depends on HISI_FLP
+	default n
+	---help---
+	  Enable support for GEOFENCE driver
+
+config HISI_FLP_CELLFENCE
+	bool "HISI FLP CELLFENCE support"
+	depends on HISI_FLP
+	default n
+	---help---
+	  Enable support for CELLFENCE driver
+
+config HISI_FLP_WIFIFENCE
+	bool "HISI_FLP_WIFIFENCE support"
+	depends on HISI_FLP
+	default n
+	---help---
+	  Enable support for WIFIFENCE driver
+
+config HISI_FLP_BATCHING
+	bool "HISI_FLP_BATCHING support"
+	depends on HISI_FLP
+	default n
+	---help---
+	  Enable support for BATCHING driver
+
+config HISI_FLP_DIAG
+	bool "HISI_FLP_DIAG support"
+	depends on HISI_FLP
+	default n
+	---help---
+	  Enable support for DIAG driver
+
+config HISI_AR
+	bool "HISI AR support"
+	depends on HISI_SOFTTIMER
+	default n
+	---help---
+	  Enable support for AR driver
+
+config CONTEXTHUB_UNIFORM_INTERVAL
+	bool "HISI CONTEXTHUB_UNIFORM_INTERVAL support"
+	depends on HISI_AR
+	default n
+	---help---
+	  Enable support for CONTEXTHUB_UNIFORM_INTERVAL driver
+
+endmenu

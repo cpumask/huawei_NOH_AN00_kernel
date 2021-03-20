@@ -1,0 +1,7 @@
+#
+# huawei hardware monitor drivers
+#
+
+source "drivers/hwpower/cc_hardware_monitor/lga_check/Kconfig"
+source "drivers/hwpower/cc_hardware_monitor/water_detect/Kconfig"
+source "drivers/hwpower/cc_hardware_monitor/ffc_control/Kconfig"

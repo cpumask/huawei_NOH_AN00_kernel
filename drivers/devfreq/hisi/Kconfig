@@ -1,0 +1,13 @@
+config HISI_DEVFREQ
+	tristate "Hisilicon DEVFREQ Driver"
+	depends on ARCH_HISI && PM_DEVFREQ
+	select PM_OPP
+	help
+	  Hisilicon devfreq driver common module.
+
+source "drivers/devfreq/hisi/ddr_devfreq/Kconfig"
+source "drivers/devfreq/hisi/dsu_pctrl/Kconfig"
+source "drivers/devfreq/hisi/gpu_devfreq/Kconfig"
+source "drivers/devfreq/hisi/l3c_devfreq/Kconfig"
+source "drivers/devfreq/hisi/mem_lat/Kconfig"
+source "drivers/devfreq/hisi/npu_devfreq/Kconfig"

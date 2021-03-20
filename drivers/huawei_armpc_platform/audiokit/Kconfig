@@ -1,0 +1,14 @@
+#
+# Audiokit configuration
+#
+menuconfig ARMPC_AUDIOKIT
+bool "Audio Kit"
+default n
+help
+ choose y to open Audio Kit
+if ARMPC_AUDIOKIT
+source "drivers/huawei_armpc_platform/audiokit/dsm_audio/Kconfig"
+source "drivers/huawei_armpc_platform/audiokit/boxid/Kconfig"
+source "drivers/huawei_armpc_platform/audiokit/smartpakit/Kconfig"
+source "drivers/huawei_armpc_platform/audiokit/ana_hs_kit/Kconfig"
+endif

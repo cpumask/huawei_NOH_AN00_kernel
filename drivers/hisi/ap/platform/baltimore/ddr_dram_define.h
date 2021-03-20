@@ -1,0 +1,40 @@
+#ifndef __DDR_DRAM_DEFINE_H__
+#define __DDR_DRAM_DEFINE_H__ 
+#define DRAM_MR0 0U
+#define DRAM_MR1 1U
+#define DRAM_MR2 2U
+#define DRAM_MR3 3U
+#define DRAM_MR4 4U
+#define DRAM_MR5 5U
+#define DRAM_MR6 6U
+#define DRAM_MR7 7U
+#define DRAM_MR8 8U
+#define DRAM_MR9 9U
+#define DRAM_MR10 10U
+#define DRAM_MR11 11U
+#define DRAM_MR12 12U
+#define DRAM_MR13 13U
+#define DRAM_MR14 14U
+#define DRAM_MR15 15U
+#define DRAM_MR16 16U
+#define DRAM_MR17 17U
+#define DRAM_MR18 18U
+#define DRAM_MR19 19U
+#define DRAM_MR20 20U
+#define DRAM_MR21 21U
+#define DRAM_MR22 22U
+#define DRAM_MR23 23U
+#define DRAM_MR24 24U
+#define DRAM_MR25 25U
+#define DRAM_MR26 26U
+#define DRAM_MR27 27U
+#define DRAM_MR28 28U
+#define DRAM_MR30 30U
+#define DRAM_MR31 31U
+#define DRAM_MR32 32U
+#define DRAM_MR35 35U
+#define DRAM_MR36 36U
+#define DRAM_MR37 37U
+#define DRAM_MR41 41U
+#define DRAM_MR51 51U
+#endif

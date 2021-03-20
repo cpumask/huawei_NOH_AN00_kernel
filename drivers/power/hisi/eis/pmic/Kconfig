@@ -1,0 +1,6 @@
+config HISI_EIS_PMIC
+	bool "hisi eis hardware in pmic"
+	default n
+	depends on HISI_EIS
+	help
+	  hardware in pmic for eis.

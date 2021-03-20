@@ -1,0 +1,32 @@
+#
+# Huawei battery temperature configuration
+#
+
+config HUAWEI_BATTERY_TEMP
+	bool "huawei battery temperature"
+	default n
+	help
+	  Say Y here to enable huawei temperature support.
+	  Support multi battery temperature.
+	  Compatible with hisi coul driver.
+	  Need to register a instance by huawei_battery_temp_register.
+
+config HUAWEI_MULTI_BATT_TEMP
+	bool "huawei multi battery temperature"
+	default n
+	depends on HUAWEI_BATTERY_TEMP
+	help
+	  Say Y here to enable multi battery temperature module.
+	  This module monitor multi battery temperature,
+	  and mixed multi battery temperature.
+	  Should register to HUAWEI_BATTERY_TEMP module.
+
+config HUAWEI_MULTI_BTB_TEMP
+	bool "huawei multi btb temperature"
+	default n
+	depends on HUAWEI_BATTERY_TEMP
+	help
+	  Say Y here to enable multi btb temperature module.
+	  This module monitor multi btb temperature,
+	  and mixed multi btb temperature.
+	  Should register to HUAWEI_BATTERY_TEMP module.

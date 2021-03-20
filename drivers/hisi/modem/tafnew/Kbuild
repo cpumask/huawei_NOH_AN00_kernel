@@ -1,0 +1,336 @@
+MODEM_DIR := $(srctree)/drivers/hisi/modem
+-include $(MODEM_DIR)/config/product/$(OBB_PRODUCT_NAME)/$(OBB_MODEM_CUST_CONFIG_DIR)/config/balong_product_config.mk
+
+CC_USER_FLAGS   := -Werror
+
+ifeq ($(TARGET_ARM_TYPE), arm64)
+EXTRA_CFLAGS += -Iarch/arm64/include/asm
+else
+EXTRA_CFLAGS += -Iarch/arm/include/asm
+endif
+EXTRA_CFLAGS += -Iinclude/linux
+EXTRA_CFLAGS += -Iinclude/generated
+
+ifeq ($(CFG_EXTRA_MODEM_MODE), FEATURE_ON)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/inc/
+
+#$(CFG_EXTRA_MODEM_MODE)
+else
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/med
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/tools
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/hing_phy_fs1/fess/bb
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/hing_phy_fs1/fess/comm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/adrv
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/comm/osa
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/om/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/nvim/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/log/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/acore/cbtcpm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/acore/cbtscm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/comm/om/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/ccore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/comm/si/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/comm/usimm/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/errno/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/socp/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/nvim/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/cpm/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/acore/guc_nas
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/guc_nas
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/acore/guc_as
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/guc_as
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/acore/msp
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/msp
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/acore/drv
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/drv
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/pam
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/sys
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/common/tl_as
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/tag/apss/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/nrps/ccore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/ltev/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/ltev/ccore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/nas/
+ifneq ($(CFG_MODEM_FUSION_VERSION),true)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/osa/
+else
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/msg
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/osa/fusion
+endif
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/inc/gu/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/comm/acore/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/comm/comm/ppm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/comm/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/acore/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/acore/cbtcpm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/acore/cbtscm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/taf_api_lib/inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/at/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/log/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/dms/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/dms/dev/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/tafagent/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/tafapi/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/lib/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/msg_chk/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/rnic/driver/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/rnic/manager/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/LOGFILTER/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/common/dms/cmux/
+
+ifneq ($(CFG_EXTRA_MODEM_MODE_MBB), FEATURE_ON)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/appvcom/inc/
+endif
+
+ifeq ($(CFG_FEATURE_DATA_SERVICE_NEW_PLATFORM), FEATURE_ON)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/ads_v2/driver/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/ads_v2/manager/inc/
+ifeq ($(CFG_FEATURE_PC5_DATA_CHANNEL), FEATURE_ON)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/ltev/driver/
+endif
+else
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/ads/inc/
+endif
+
+-include $(MODEM_DIR)/config/product/$(OBB_PRODUCT_NAME)/$(OBB_MODEM_CUST_CONFIG_DIR)/config/balong_product_config.mk
+ifeq ($(CFG_FEATURE_BASTET), FEATURE_ON)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/tafnew/acore/bastet/inc/
+EXTRA_CFLAGS += -DCONFIG_HUAWEI_BASTET_COMM
+endif
+
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/lt/comm/sdm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/lt/comm/sda
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/lt/comm/diag
+
+#$(CFG_EXTRA_MODEM_MODE)
+endif
+
+
+ifneq ($(TARGET_ARM_TYPE), arm64)
+EXTRA_CFLAGS += -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm
+endif
+
+
+EXTRA_CFLAGS +=  -DVOS_LINUX=4 -DOSA_CPU_ACPU=1 -DVOS_OS_VER=VOS_LINUX -DVOS_OSA_CPU=OSA_CPU_ACPU -D__LOG_RELEASE__ \
+				-DBSP_CORE_APP -DGU_MODE -DMSP_SUPPORT_USB_VCOM1 -DMSP_SUPPORT_USB_VCOM2 -DVOS_DOPRA_VER=2 -DNDIS_RELEASE \
+				-DBALONG_PHY_V200=2 -DBALONG_PHY_V300=3 -DBALONG_PHY_VER=BALONG_PHY_V300 -DBALONG_CHIP_V200=2 \
+				-DBALONG_CHIP_V300=3 -DBALONG_CHIP_V500=4 -DBALONG_CHIP_VER=BALONG_CHIP_V500 -DMSP_GUNAS_AT_UNITE -DVERSION_V3R2
+
+ifeq ($(CFG_MODEM_FUSION_VERSION),true)
+EXTRA_CFLAGS += -DVOS_SUPPORT_TSP
+endif
+
+EXTRA_CFLAGS += -DHAL_DIAG_SDM_USE
+
+
+#编译器相关的宏定义
+EXTRA_CFLAGS += -fsigned-char
+
+ifeq ($(CFG_EXTRA_MODEM_MODE), FEATURE_ON)
+
+taf-objs := acore/rnic/driver/rnic_dev_config.o
+taf-objs += acore/rnic/driver/rnic_dev_handle.o
+taf-objs += acore/rnic/driver/rnic_dev_main.o
+taf-objs += acore/rnic/driver/rnic_policy_manage.o
+
+#$(CFG_EXTRA_MODEM_MODE)
+else
+
+ifeq ($(CFG_FEATURE_DATA_SERVICE_NEW_PLATFORM), FEATURE_ON)
+taf-objs := acore/ads_v2/driver/ads_iface.o
+taf-objs += acore/ads_v2/driver/ads_iface_handle.o
+taf-objs += acore/ads_v2/driver/ads_iface_dpl.o
+taf-objs += acore/ads_v2/driver/ads_iface_filter.o
+ifeq ($(CFG_FEATURE_PC5_DATA_CHANNEL), FEATURE_ON)
+taf-objs += acore/ltev/driver/ltev_iface.o
+endif
+taf-objs += acore/ads_v2/manager/src/AdsIfaceMgmt.o
+taf-objs += acore/ads_v2/manager/src/AdsMain.o
+taf-objs += acore/ads_v2/manager/src/AdsMntn.o
+taf-objs += acore/ads_v2/manager/src/AdsMsgProc.o
+taf-objs += acore/ads_v2/manager/src/AdsTimer.o
+else
+taf-objs := acore/ads/src/AdsCtx.o
+taf-objs += acore/ads/src/AdsDownLink.o
+taf-objs += acore/ads/src/AdsInit.o
+taf-objs += acore/ads/src/AdsTimerMgmt.o
+taf-objs += acore/ads/src/AdsUpLink.o
+taf-objs += acore/ads/src/AdsDebug.o
+taf-objs += acore/ads/src/AdsFilter.o
+taf-objs += acore/ads/src/AdsMntn.o
+endif
+
+
+ifneq ($(CFG_EXTRA_MODEM_MODE_MBB), FEATURE_ON)
+ifeq ($(CFG_FEATURE_ACORE_MODULE_TO_CCORE), FEATURE_OFF)
+taf-objs += acore/appvcom/src/AppVcomDev.o
+endif
+taf-objs += acore/rnic/driver/NetMgrCtrlVcom.o
+endif
+
+taf-objs += acore/rnic/driver/rnic_dev_config.o
+taf-objs += acore/rnic/driver/rnic_dev_handle.o
+taf-objs += acore/rnic/driver/rnic_dev_main.o
+taf-objs += acore/rnic/driver/rnic_ondemand.o
+taf-objs += acore/rnic/driver/rnic_policy_manage.o
+taf-objs += acore/rnic/manager/src/RnicEntity.o
+taf-objs += acore/rnic/manager/src/RnicIfaceCfg.o
+taf-objs += acore/rnic/manager/src/RnicIfaceOndemand.o
+taf-objs += acore/rnic/manager/src/RnicMain.o
+taf-objs += acore/rnic/manager/src/RnicMntn.o
+taf-objs += acore/rnic/manager/src/RnicMsgProc.o
+taf-objs += acore/rnic/manager/src/RnicTimerMgmt.o
+taf-objs += common/msg_chk/src/ads_msg_chk.o
+taf-objs += common/msg_chk/src/taf_msg_chk_api.o
+
+ifeq ($(CFG_FEATURE_ACORE_MODULE_TO_CCORE), FEATURE_OFF)
+taf-objs += common/msg_chk/src/taf_msg_chk.o
+taf-objs += common/msg_chk/src/tafagent_msg_chk.o
+taf-objs += common/msg_chk/src/dms_msg_chk.o
+taf-objs += common/lib/src/Taf_MmiStrParse.o
+taf-objs += common/lib/src/MnMsgDecode.o
+taf-objs += common/lib/src/TafApsApi.o
+taf-objs += common/lib/src/TafDsmApi.o
+taf-objs += common/lib/src/TafIfaceApi.o
+taf-objs += common/lib/src/TafMtcApi.o
+taf-objs += common/lib/src/TafMmaApi.o
+taf-objs += common/lib/src/taf_mta_api.o
+taf-objs += common/lib/src/TafSsaApi.o
+taf-objs += common/lib/src/MnCommApi.o
+taf-objs += common/lib/src/MnMsgEncode.o
+taf-objs += common/lib/src/MnMsgCbEncDec.o
+taf-objs += common/lib/src/hi_list.o
+taf-objs += common/lib/src/TafStdlib.o
+taf-objs += common/lib/src/GuNasLogFilter.o
+taf-objs += common/lib/src/TafLogPrivacyMatch.o
+taf-objs += common/lib/src/TafCcmApi.o
+taf-objs += common/tafagent/src/TafAgent.o
+taf-objs += common/tafagent/src/TafAgentCtx.o
+taf-objs += common/log/src/TafAcoreLogPrivacy.o
+taf-objs += common/at/src/AtBasicCmd.o
+taf-objs += common/at/src/AtCheckFunc.o
+taf-objs += common/at/src/AtCmdFtmProc.o
+taf-objs += common/at/src/AtCmdMsgProc.o
+taf-objs += common/at/src/ATCmdProc.o
+taf-objs += common/at/src/AtCmdCallProc.o
+taf-objs += common/at/src/AtCmdPacketProc.o
+taf-objs += common/at/src/AtCmdSimProc.o
+taf-objs += common/at/src/AtCmdSupsProc.o
+taf-objs += common/at/src/AtCmdMiscProc.o
+taf-objs += common/at/src/AtCombinecmd.o
+taf-objs += common/at/src/AtDataProc.o
+taf-objs += common/at/src/AtDeviceCmd.o
+taf-objs += common/at/src/AtEventReport.o
+taf-objs += common/at/src/AtCmdImsProc.o
+taf-objs += common/at/src/AtCmdCssProc.o
+taf-objs += common/at/src/AtExtendCmd.o
+taf-objs += common/at/src/AtExtendPrivateCmd.o
+taf-objs += common/at/src/AtInputProc.o
+taf-objs += common/at/src/AtMntn.o
+taf-objs += common/at/src/AtMsgPrint.o
+taf-objs += common/at/src/AtNLProxyKernel.o
+taf-objs += common/at/src/AtOutputProc.o
+taf-objs += common/at/src/AtParseBasicCmd.o
+taf-objs += common/at/src/AtParseCmd.o
+taf-objs += common/at/src/AtParseCore.o
+taf-objs += common/at/src/AtParseDCmd.o
+taf-objs += common/at/src/AtParseDMCmd.o
+taf-objs += common/at/src/AtParseExtendCmd.o
+taf-objs += common/at/src/AtParsePara.o
+taf-objs += common/at/src/AtParseSCmd.o
+taf-objs += common/at/src/AtQueryParaCmd.o
+taf-objs += common/at/src/AtSetParaCmd.o
+taf-objs += common/at/src/AtMtCommFun.o
+taf-objs += common/at/src/AtMtMsgProc.o
+taf-objs += common/at/src/AtTestParaCmd.o
+taf-objs += common/at/src/AtTimer.o
+taf-objs += common/at/src/ATSndMsg.o
+taf-objs += common/at/src/AtAbortParaCmd.o
+taf-objs += common/at/src/AtCtx.o
+taf-objs += common/at/src/AtInit.o
+taf-objs += common/at/src/AtCmdCagpsProc.o
+taf-objs += common/at/src/AtCmdAgpsProc.o
+taf-objs += common/at/src/at_ltev_cmd.o
+taf-objs += common/at/src/at_ltev_msg_proc.o
+taf-objs += common/at/src/taf_v2x_api.o
+taf-objs += common/at/src/at_acore_only_cmd.o
+taf-objs += common/at/src/at_mbb_cmd.o
+taf-objs += common/at/src/at_mbb_common.o
+taf-objs += common/tafapi/src/MnCallApi.o
+taf-objs += common/tafapi/src/MnMsgApi.o
+taf-objs += common/tafapi/src/Ssa_App_Remote.o
+taf-objs += common/tafapi/src/Taf_Tafm_AppRemote.o
+taf-objs += common/tafapi/src/VcApi.o
+taf-objs += common/tafapi/src/TafXsmsApi.o
+taf-objs += common/dms/dev/dms_buff.o
+taf-objs += common/dms/dev/dms_debug.o
+taf-objs += common/dms/dev/dms_dev.o
+taf-objs += common/dms/dev/dms_dev_acm.o
+taf-objs += common/dms/dev/dms_dev_app.o
+taf-objs += common/dms/dev/dms_dev_hsuart.o
+taf-objs += common/dms/dev/dms_dev_mdm.o
+taf-objs += common/dms/dev/dms_dev_ncm.o
+taf-objs += common/dms/dev/dms_dev_sock.o
+taf-objs += common/dms/dev/dms_dev_uart.o
+taf-objs += common/dms/dev/dms_dev_cmux.o
+taf-objs += common/dms/src/dms_file_node.o
+taf-objs += common/dms/src/dms_mntn.o
+taf-objs += common/dms/src/dms_port.o
+taf-objs += common/dms/src/dms_port_msc.o
+taf-objs += common/dms/src/dms_port_trans.o
+taf-objs += common/dms/src/dms_port_event.o
+taf-objs += common/dms/src/dms_task.o
+
+ifeq ($(CFG_FEATURE_IOT_HSUART_CMUX), FEATURE_ON)
+taf-objs += common/dms/cmux/cmux_api_ifc.o
+taf-objs += common/dms/cmux/cmux_cmd.o
+taf-objs += common/dms/cmux/cmux_drv_ifc.o
+taf-objs += common/dms/cmux/cmux_framer.o
+taf-objs += common/dms/cmux/cmux_tgt_osal.o
+taf-objs += common/dms/cmux/cmux_udi_al.o
+endif
+
+taf-objs += common/at/src/at_lte_common.o
+taf-objs += common/at/src/at_lte_ct_ex_proc.o
+taf-objs += common/at/src/at_lte_ct_ex2_proc.o
+taf-objs += common/at/src/at_lte_ct_proc.o
+taf-objs += common/at/src/at_lte_eventreport.o
+taf-objs += common/at/src/at_lte_ms_proc.o
+taf-objs += common/at/src/at_lte_set_proc.o
+taf-objs += common/at/src/at_lte_st_proc.o
+taf-objs += common/at/src/at_lte_upgrade_proc.o
+taf-objs += common/at/src/AtDeviceCmdTL.o
+taf-objs += common/at/src/at_comm_cmd.o
+taf-objs += common/at/src/at_file_handle.o
+
+else
+taf-objs += common/at/src/at_stub.o
+endif
+
+ifeq ($(CFG_FEATURE_BASTET), FEATURE_ON)
+taf-objs += acore/bastet/src/BastetInit.o
+taf-objs += acore/bastet/src/BastetComm.o
+endif
+
+ifeq ($(CFG_FEATURE_PC5_DATA_CHANNEL), FEATURE_ON)
+taf-objs += common/at/src/pc5_chqrpt.o
+endif
+
+#$(CFG_EXTRA_MODEM_MODE)
+
+endif
+
+ifneq ($(strip $(CONFIG_HISI_BALONG_MODEM)),m)
+obj-y  := taf.o
+endif
+
+

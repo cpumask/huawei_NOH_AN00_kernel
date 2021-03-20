@@ -1,0 +1,6 @@
+#sensor unification for differ platform
+menuconfig HUAWEI_ARMPC_PCIE2USB
+	bool "huawei armpc PCIE2USB device"
+	default n
+	help
+	Say yes here to support pcie2usb control for huawei arm PC.

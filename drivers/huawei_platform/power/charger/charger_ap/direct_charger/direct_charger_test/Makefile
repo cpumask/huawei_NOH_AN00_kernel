@@ -1,0 +1,1 @@
+obj-$(CONFIG_DIRECT_CHARGER) += dc_mmi.o

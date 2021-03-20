@@ -1,0 +1,24 @@
+config CONTEXTHUB_SWING
+	bool "swing driver"
+	depends on INPUTHUB_20
+	default n
+	help
+	Swing driver support aonn.
+
+config CONTEXTHUB_SWING_DBG
+	bool "swing dbg drvier"
+	depends on INPUTHUB_20
+	default n
+	help
+	Swing debug drvier support aonn.
+
+config CONTEXTHUB_SWING_20
+	bool "swing 2.0"
+	default n
+	help
+	  swing 2.0 config
+config CONTEXTHUB_SWING_TOF
+	bool "swing tof"
+	default n
+	help
+	Swing tof driver

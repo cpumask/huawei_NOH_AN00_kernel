@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-2.0
+# Hyperhold container backend device configuration
+
+# Selected when system need hyperhold container
+config HYPERHOLD_CORE
+	bool "Hyperhold container device support"
+	depends on ZRAM && HYPERHOLD && ZS_MALLOC_EXT
+	default n
+	---help---
+	  Say Y here if you want to use the hyperhold
+	  as the backend device in ZRAM.
+	  If unsure, say N here.
+	  This module can't be compiled as a module,
+	  the module is as one part of the ZRAM driver.
+

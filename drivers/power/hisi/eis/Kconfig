@@ -1,0 +1,33 @@
+config HISI_EIS
+	bool "hisi eis"
+	default n
+	help
+	  Electrochemical Impedance Spectroscopy.
+
+if HISI_EIS
+config HISI_EIS_FREQ
+	bool "hisi eis freq"
+	default n
+	help
+	  hisi eis frequency domain method.
+
+config HISI_EIS_TIME
+	bool "hisi eis time"
+	default n
+	help
+	   hisi eis time domain method.
+
+config HISI_EIS_WAVELET
+	bool "hisi eis wavelet"
+	default n
+	help
+	  hisi eis wavelet method.
+
+config HISI_EIS_VERBOSE_DEBUG
+	bool "hisi eis verbose debug"
+	default n
+	help
+	  hisi eis verbose debug
+endif
+
+source drivers/power/hisi/eis/pmic/Kconfig

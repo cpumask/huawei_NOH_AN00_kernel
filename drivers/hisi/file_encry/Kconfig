@@ -1,0 +1,13 @@
+config HISI_FILE_BASED_ENCRYPTO
+	bool "HISI FEB3 support"
+	default n
+	help
+	  Say yes here to support the HISI FBE3
+
+config HISI_FILE_BASED_ENCRYPTO_DBG
+	bool "HISI FEB3 debug support"
+	depends on HISI_FILE_BASED_ENCRYPTO
+	depends on HISI_DEBUG_FS
+	default n
+	help
+	  Say yes here to support the HISI FBE3 debug

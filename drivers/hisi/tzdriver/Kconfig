@@ -1,0 +1,161 @@
+menu "TEE OS"
+
+config TZDRIVER
+	tristate "Secure Execution Communicator driver"
+	default n
+	help
+	  Provides a communication interface between userspace and
+	  TrustZone Operating Environment.
+
+config CPU_AFF_NR
+	int "Default Cpu Affinity"
+	default 0
+
+config DRM_ADAPT
+	bool "Drm Feature Adapt"
+	default n
+	depends on TZDRIVER
+	help
+	  Drm Feature Adapt
+
+config TEEECD_AUTH
+	bool "Teec Daemon Path Hash Auth"
+	default n
+	depends on TZDRIVER
+	help
+	  TEEOS TEECD path hash auth
+
+config CLIENT_AUTH
+	bool "Client Application Hash Auth"
+	default n
+	depends on TZDRIVER
+	help
+	  TEEOS CA code hash auth
+
+config ANDROID_HIDL
+	bool "Android Hidl Adapt"
+	default n
+	depends on CLIENT_AUTH
+	help
+	  TEEOS hidl proc auth
+
+config SELINUX_ADAPT
+	bool "Selinux Interface Adapt"
+	default n
+	depends on TEEECD_AUTH || CLIENT_AUTH
+	help
+	  Selinux Interface Adapt
+
+config AUTH_ENHANCE
+	bool "Secure Execution Auth Enhance"
+	default n
+	depends on CLIENT_AUTH
+	help
+	  TEEOS auth enhance
+
+config TEE_AUDIT
+	bool "Audit TA"
+	default n
+	depends on AUTH_ENHANCE
+	help
+	  Audit TA in case of evil TA
+
+config DYNAMIC_ION
+	bool "Dynamic Ion Feature"
+	default n
+	depends on TZDRIVER
+	help
+	  TEEOS dynamic ion
+
+config STATIC_ION
+	bool "Static Ion Feature"
+	default n
+	depends on TZDRIVER
+	help
+	  TEEOS static ion
+
+config RDR_MEM
+	bool "Register Rdr Mem"
+	default n
+	depends on TZDRIVER
+	help
+	  Register Rdr Mem
+
+config TEELOG
+	bool "Secure Execution Log Driver"
+	default n
+	depends on TZDRIVER
+	help
+	  TEEOS log
+
+config TEE_LOG_ACHIVE_PATH
+	string "Tee log achive path"
+	default "/data/log/tee/last_teemsg"
+	depends on TEELOG
+	help
+	  Last tee msg log path
+
+config TEE_KTRACE
+	bool "TEEOS Kernel Event Log Driver"
+	default n
+	depends on TEELOG
+	help
+	  TEEOS event trace
+
+config TEE_LOG_EXCEPTION
+	bool "Log Exception Info to Imonitor"
+	default n
+	depends on TEELOG
+	help
+	  Log exception info to imonitor
+
+config KERNEL_CLIENT
+	bool "Kernel Client Interface"
+	default n
+	depends on TZDRIVER
+	help
+	  Kernel Client Interface
+
+config TEE_TUI
+	bool "Trusted User Interface Driver"
+	default n
+	depends on TZDRIVER
+	help
+	  Trusted user interface diver
+
+config TEE_TUI_FP
+	bool "Trusted User Interface Driver For FP"
+	default n
+	depends on TZDRIVER
+	help
+	  Trusted user interface diver
+
+config HISI_SECBOOT_IMG
+	bool "tzdriver split secboot img into modem and ap"
+	default n
+	depends on KERNEL_CLIENT
+	help
+	  Macro defined for splitting modem and ap img
+
+config HISI_SECBOOT_IMG_V2
+	bool "tzdriver split modem and ap for v2"
+	default n
+	depends on KERNEL_CLIENT
+	help
+	  Macro defined for splitting modem and ap img v2
+
+config ASAN_DEBUG
+	bool "hisi ASAN debug version"
+	default n
+	help
+	  Macro defined for ASAN debug version
+
+config BIG_SESSION
+	bool "open more sessions"
+	default n
+	depends on TZDRIVER
+	help
+	  TEEOS open more sessions
+
+
+endmenu

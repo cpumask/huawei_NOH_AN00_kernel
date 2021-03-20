@@ -1,0 +1,67 @@
+config HISI_HHEE
+	bool "HISI HHEE support"
+	default n
+	help
+	  Say yes here to support the HISI HHEE
+
+config HISI_HHEE_TOKEN
+	bool "HISI TOKEN for hhee"
+	depends on HISI_HHEE
+	default n
+	help
+	  Say yes when token needed
+
+config HISI_MODULE_ALLOC
+	bool "HISI overload module_alloc for hhee"
+	depends on HISI_HHEE
+	default n
+	help
+	  Say yes when overload is needed
+
+config HISI_HHEE_DEBUG
+	bool "HISI HHEE test support"
+	depends on !UBSAN && !KCOV && !KASAN
+	depends on HISI_HHEE
+	depends on HISI_DEBUG_FS
+	default n
+	help
+	  Say yes here to support the HISI HHEE debug
+
+config HISI_UEFI_HHEE
+	bool "HISI HHEE support for UEFI boot"
+	depends on HISI_HHEE
+	default n
+	help
+	  Say yes here to support HHEE when kernel boot form UEFI
+
+config HISI_PRMEM
+	bool "Write protect critical data not requiring high write speed."
+	default n
+	help
+	  Selected data can be tagged/allocated in such a way that it
+	  becomes read-only, with the option of allowing for modifications
+	  through specific API. Run-time allocation must also use such API.
+	  Saying No here will revert to basic kernel vmalloc.
+
+config HISI_PRMEM_BYPASS
+	bool "Let the allocator active, but do not protect the memory"
+	depends on HISI_PRMEM
+	default n
+	help
+	  Useful for debugging or for testing existing code while it is
+	  being converted to the prmem API.
+	  Saying Yes here will not write protect the allocations.
+
+config DEBUG_HISI_PRMEM
+	bool "Run self test for protected memory (prmem)"
+	depends on HISI_PRMEM
+	default n
+	help
+	  Verifies that the protected memory interface works correctly.
+
+config HHEE_USING_IPI
+	bool "HISI HHEE Using IPI interrupt"
+	depends on HISI_HHEE
+	default n
+	help
+	  Say yes here to support using IPI not GIC
